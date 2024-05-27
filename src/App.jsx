@@ -1,7 +1,8 @@
 import { Route,createBrowserRouter,createRoutesFromElements, RouterProvider  } from "react-router-dom"
 import HomePage from "./pages/HomePage"
-import Jobs from "./components/Jobs"
+import JobsPge from "./pages/JobsPage";
 import NavbarLayout from "./layouts/NavbarLayout"
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
   createRoutesFromElements (
   <Route path="/"  element={<NavbarLayout />} >
     <Route path="/"  element={<HomePage />} />
-    <Route path="/jobs"  element={<Jobs />} />
+    <Route path="/jobs"  element={<JobsPge />} />
+    <Route path="*"  element={<NotFound />} />
   </Route>
 
 )
