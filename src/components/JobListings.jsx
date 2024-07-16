@@ -7,11 +7,14 @@ function jobListings({isHome = false}) {
 
   useEffect(() => {
    const fetchJobs = async () =>{
-    const api_url = isHome ? '/api/jobs?_limit=3' : '/api/jobs'
+    const api_url = isHome ? 'https://react-find-jobs.onrender.com/jobs?_limit=3' : 'https://react-find-jobs.onrender.com/jobs'
     try {
       const result = await fetch(api_url);
       const data  = await result.json()
-      setJobs(data)
+   setTimeout(() => {
+    
+     setJobs(data)
+   }, 200);
       setLoading(true)
       
     } catch (error) {
