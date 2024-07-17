@@ -28,7 +28,7 @@ const [contactPhone, setContactPhone] = useState('');
         setLoading(true);
         const result = await fetch(job_url);
         const data = await result.json();
-        console.log(data.company.name);
+       
         setJob(data);
 
         // Update state variables with fetched data
@@ -51,7 +51,7 @@ const [contactPhone, setContactPhone] = useState('');
     };
 
     fetchJob();
-  }, [id]);
+  }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -70,7 +70,6 @@ const [contactPhone, setContactPhone] = useState('');
         contactPhone,
       },
     };
-
     updateJobSubmit(updatedJob);
 
     toast.success('Job Updated Successfully');
