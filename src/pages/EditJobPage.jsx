@@ -73,7 +73,10 @@ const [contactPhone, setContactPhone] = useState('');
     updateJobSubmit(updatedJob);
 
     toast.success('Job Updated Successfully');
-    navigate(`/jobs`);
+    setTimeout(() => {
+      navigate(`/job/${id}`);
+      
+    }, 400);
     return;
   };
 

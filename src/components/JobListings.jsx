@@ -11,10 +11,8 @@ function jobListings({isHome = false}) {
     try {
       const result = await fetch(api_url);
       const data  = await result.json()
-   setTimeout(() => {
     
      setJobs(data)
-   }, 200);
       setLoading(true)
       
     } catch (error) {
