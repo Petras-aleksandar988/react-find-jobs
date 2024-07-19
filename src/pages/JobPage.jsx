@@ -18,8 +18,10 @@ function JobPage({deleteJob}) {
      if(!confirm) return
 
      deleteJob(jobId)
-     navigate('/jobs')
-     toast.success('Job deleted Successfully');
+     setTimeout(() => {
+      navigate('/jobs')
+      toast.success('Job deleted Successfully');
+    }, 500);
 
      }
 
