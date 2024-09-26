@@ -32,20 +32,15 @@ const AddJob = ({ addJobSubmit }) => {
       },
     };
 
-
   try {
+   await addJobSubmit(newJob);
 
-    // Await the addJobSubmit function to ensure job is created before proceeding
-    await addJobSubmit(newJob);
-
-    // Navigate and show success message only after the job is successfully added
     navigate('/jobs');
     toast.success('Job added successfully!');
   } catch (error) {
     toast.error('Failed to add job, please try again.');
   }
-      
-   
+       
   };
 
   return ( 

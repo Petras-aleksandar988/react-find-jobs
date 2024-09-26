@@ -9,7 +9,6 @@ import AddJob from "./pages/AddJob";
 
   // Add New Job
   const addJobFn = async (newJob) => {
-    
     const res = await fetch('https://aleksa-scandiweb.shop/socialNetwork/jobs.php', {
       method: 'POST',
       headers: {
