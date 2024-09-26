@@ -15,6 +15,7 @@ const [type, setType] = useState('');
 const [location, setLocation] = useState('');
 const [description, setDescription] = useState('');
 const [salary, setSalary] = useState('');
+const [companyId, setCompanyId] = useState('');
 const [companyName, setCompanyName] = useState('');
 const [companyDescription, setCompanyDescription] = useState('');
 const [contactEmail, setContactEmail] = useState('');
@@ -23,13 +24,12 @@ const [contactPhone, setContactPhone] = useState('');
 
   useEffect(() => {
     const fetchJob = async () => {
-      const job_url = `https://react-find-jobs.onrender.com/jobs/${id}`;
+      const job_url = `https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${id}`;
       try {
         setLoading(true);
         const result = await fetch(job_url);
         const data = await result.json();
-       
-        setJob(data);
+         
 
         // Update state variables with fetched data
         setTitle(data.title);
@@ -37,6 +37,7 @@ const [contactPhone, setContactPhone] = useState('');
         setLocation(data.location);
         setDescription(data.description);
         setSalary(data.salary);
+        setCompanyId(data.company.id);
         setCompanyName(data.company.name);
         setCompanyDescription(data.company.description);
         setContactEmail(data.company.contactEmail);
@@ -53,7 +54,7 @@ const [contactPhone, setContactPhone] = useState('');
     fetchJob();
   }, []);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     const updatedJob = {
@@ -64,19 +65,25 @@ const [contactPhone, setContactPhone] = useState('');
       description,
       salary,
       company: {
+        id: companyId,
         name: companyName,
         description: companyDescription,
         contactEmail,
         contactPhone,
       },
     };
-    updateJobSubmit(updatedJob);
 
-    toast.success('Job Updated Successfully');
-    setTimeout(() => {
-      navigate(`/job/${id}`);
-      
-    }, 400);
+    try {
+        
+      await updateJobSubmit(updatedJob);
+  
+      toast.success('Job Updated Successfully');
+  
+        navigate(`/job/${id}`);
+    } catch (error) {
+      toast.error('Failed toedit job.');
+    }
+  
     return;
   };
 
@@ -189,7 +196,7 @@ const [contactPhone, setContactPhone] = useState('');
                 />
               </div>
   
-              <h3 className='text-2xl mb-5'>Company Info</h3>
+              <h3 className='text-2xl mb-5 '>Company Info</h3>
   
               <div className='mb-4'>
                 <label

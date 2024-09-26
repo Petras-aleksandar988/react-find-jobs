@@ -15,7 +15,7 @@ const AddJob = ({ addJobSubmit }) => {
 
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     const newJob = {
@@ -32,14 +32,20 @@ const AddJob = ({ addJobSubmit }) => {
       },
     };
 
-    addJobSubmit(newJob);
 
-    setTimeout(() => {
-      toast.success('Job Added Successfully');
-      navigate('/jobs');
+  try {
+
+    // Await the addJobSubmit function to ensure job is created before proceeding
+    await addJobSubmit(newJob);
+
+    // Navigate and show success message only after the job is successfully added
+    navigate('/jobs');
+    toast.success('Job added successfully!');
+  } catch (error) {
+    toast.error('Failed to add job, please try again.');
+  }
       
-      return
-    }, 400);
+   
   };
 
   return ( 
@@ -47,9 +53,8 @@ const AddJob = ({ addJobSubmit }) => {
      <section className="bg-indigo-50">
       <div className="container m-auto max-w-2xl py-24">
         <div
-          className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
-        >
-          <form onSubmit={submitForm}>
+          className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">  
+          <form  onSubmit={submitForm}>
             <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
             <div className="mb-4">

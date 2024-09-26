@@ -9,7 +9,8 @@ import AddJob from "./pages/AddJob";
 
   // Add New Job
   const addJobFn = async (newJob) => {
-    const res = await fetch('https://react-find-jobs.onrender.com/jobs', {
+    
+    const res = await fetch('https://aleksa-scandiweb.shop/socialNetwork/jobs.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ import AddJob from "./pages/AddJob";
   
    // Update Job
    const updateJob = async (job) => {
-    const res = await fetch(`https://react-find-jobs.onrender.com/jobs/${job.id}`, {
+    const res = await fetch(`https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${job.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ import AddJob from "./pages/AddJob";
 
   const deleteJob = async (id) => {
 
-    const res = await fetch(`https://react-find-jobs.onrender.com/jobs/${id}`, {
+    const res = await fetch(`https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${id}`, {
       method: 'DELETE',
     
     });

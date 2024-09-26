@@ -12,16 +12,16 @@ function JobPage({deleteJob}) {
      const [loading, setLoading] = useState(true)
      const {id }= useParams()
      
-     const onDeleteClick = (jobId) =>{
+     const onDeleteClick = async  (jobId) =>{
        const confirm = window.confirm('Are you sure you want to delete this listing?');
        
      if(!confirm) return
 
-     deleteJob(jobId)
-     setTimeout(() => {
+    await deleteJob(jobId)
+   
       navigate('/jobs')
       toast.success('Job deleted Successfully');
-    }, 500);
+ 
 
      }
 
@@ -29,19 +29,18 @@ function JobPage({deleteJob}) {
 useEffect(() => {
     const fetchJob = async () =>{
         //  const job_url =  `/api/jobs/${id}`
-        const job_url =  `https://react-find-jobs.onrender.com/jobs/${id}`
+        const job_url =  `https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${id}`
         try {
             setLoading(true)
           const result = await fetch(job_url);
           const data  = await result.json()
-          console.log(data.company.name);
          
             
             setJob(data)
           
           setLoading(false)
           
-        } catch (error) {
+        } catch (error) { 
           console.log('Error catching data', error);
         }finally{
           setLoading(false)
@@ -96,7 +95,7 @@ useEffect(() => {
             <aside>
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <h3 className='text-xl font-bold mb-6'>Company Info</h3>
-                <h2 className='text-2xl'>{job.company.name}</h2>
+                <h2 className='text-2xl break-words'>{job.company.name}</h2>
 
             <p className='my-2'>{job.company.description}</p>
 

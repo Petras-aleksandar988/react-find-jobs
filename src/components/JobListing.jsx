@@ -17,7 +17,7 @@ function jobListing({job}) {
         <h3 className="text-xl font-bold">{job.title}</h3>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-5 break-words min-h-[75px]">
       {description}
       </div>
    <button onClick={()=> setDescription((prevState)=> !prevState)} className="text-indigo-500 mb-5 hover:text-indigo-600">{showDescription ? 'Less' : "More"}</button>
