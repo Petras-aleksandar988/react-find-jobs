@@ -13,6 +13,7 @@ import AddJob from "./pages/AddJob";
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'API_KEY': import.meta.env.VITE_API_KEY,
       },
       body: JSON.stringify(newJob),
     });
@@ -25,6 +26,7 @@ import AddJob from "./pages/AddJob";
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'API_KEY': import.meta.env.VITE_API_KEY,
       },
       body: JSON.stringify(job),
     });
@@ -39,6 +41,9 @@ import AddJob from "./pages/AddJob";
 
     const res = await fetch(`https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${id}`, {
       method: 'DELETE',
+      headers:{
+        'API_KEY': import.meta.env.VITE_API_KEY,
+      }
     
     });
 

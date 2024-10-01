@@ -4,12 +4,16 @@ function jobListings({isHome = false}) {
 
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
-
+  
   useEffect(() => {
    const fetchJobs = async () =>{
     const api_url = isHome ? 'https://aleksa-scandiweb.shop/socialNetwork/jobs.php?limit=3' : 'https://aleksa-scandiweb.shop/socialNetwork/jobs.php'
     try {
-      const result = await fetch(api_url);
+      const result = await fetch(api_url,{
+        headers: {
+          'API_KEY': import.meta.env.VITE_API_KEY,
+        }
+      });
       const data  = await result.json()
     
      setJobs(data)

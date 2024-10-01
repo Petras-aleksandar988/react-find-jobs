@@ -32,7 +32,11 @@ useEffect(() => {
         const job_url =  `https://aleksa-scandiweb.shop/socialNetwork/jobs.php/?id=${id}`
         try {
             setLoading(true)
-          const result = await fetch(job_url);
+          const result = await fetch(job_url,{
+            headers:{
+              'API_KEY': import.meta.env.VITE_API_KEY,
+            }
+          });
           const data  = await result.json()
          
             
